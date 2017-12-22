@@ -1,0 +1,15 @@
+box: debian
+build:
+  steps:
+    - arjen/hugo-build:
+        version: "0.31.1"
+        theme: academic
+        flags: --buildDrafts=true
+deploy:
+  steps:
+    - install-packages:
+        packages: git ssh-client
+    - nathanoseroff/master:
+        token: $GIT_TOKEN
+        domain: nathanoseroff.github.io
+        basedir: public
